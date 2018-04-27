@@ -42,7 +42,8 @@ function appendRowToSpreadsheet($srvAccount, $fileId, $sheetName, $array_values)
     'values' => [ $array_values ]
   ]);
   $params = [
-    'valueInputOption' => 'USER_ENTERED'
+    'valueInputOption' => 'USER_ENTERED',
+    'insertDataOption' => 'INSERT_ROWS'
   ];
 
   // letter corresponding to the last array element index
