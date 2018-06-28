@@ -27,6 +27,21 @@ function getClient($srvAccount) {
 }
 
 /**
+ * Turn an integer representing a column index
+ * to a string containing its letter notation.
+ * E.g. int2AA(0) => 'A'
+ * @param int $n
+ * @return string
+ */
+function int2AA($n) {
+  $AA = 'A';
+  for ($i=0; $i<$n; $i++) {
+    $AA++;
+  }
+  return $AA;
+}
+
+/**
  * @param string $srvAccount
  * @param string $fileId The Id of the spreadsheets document
  * @param string $sheetName The name of the sheet
@@ -47,7 +62,7 @@ function appendRowToSpreadsheet($srvAccount, $fileId, $sheetName, $array_values)
   ];
 
   // letter corresponding to the last array element index
-  $end_column = chr( ord('A') + count($array_values));
+  $end_column = int2AA(count($array_values));
 
   $result = $sheet_service->spreadsheets_values->append(
     $fileId,

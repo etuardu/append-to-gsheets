@@ -27,6 +27,21 @@ function getClient($srvAccount) {
 }
 
 /**
+ * Turn an integer representing a column index
+ * to a string containing its letter notation.
+ * E.g. int2AA(0) => 'A'
+ * @param int $n
+ * @return string
+ */
+function int2AA($n) {
+  $AA = 'A';
+  for ($i=0; $i<$n; $i++) {
+    $AA++;
+  }
+  return $AA;
+}
+
+/**
  * Turn an array into a RowData.
  * The data is always set as string.
  * @param Array $array_values
@@ -116,7 +131,7 @@ function reformatLastRow($sheet_service, $fileId, $sheetName) {
 
   $array_values = escapeFormulas($array_values);
 
-  $end_column = chr( ord('A') + count($array_values));
+  $end_column = int2AA(count($array_values));
 
   $body = new Google_Service_Sheets_ValueRange([
     'values' => [ $array_values ]
